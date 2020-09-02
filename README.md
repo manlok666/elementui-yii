@@ -14,7 +14,7 @@ vue+elementUI+yii2构建的前后端分离框架
 
 - 数据库连接
 - 后端api的token权限校验
-- 前端的localStorage保存token(登出会清除token)
+- 前端的localStorage保存token/权限校验(登出会清除token)
 - 通用登录页、主页
 - 页面Header和Footer组件化
 
