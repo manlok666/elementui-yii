@@ -1,11 +1,11 @@
 <template>
   <div class="content" >
     <Header></Header>
-    <el-row :gutter="20" type="flex"  justify="center">
+    <el-row  type="flex"  justify="center">
     <el-col :span="16" class="box-card-1">
       <div v-for="o in 50" :key="o" class="text item">
         <el-row type="flex"  justify="center">
-        {{ msg + msg + msg +msg +msg +msg }}
+        {{ msg + msg + msg +msg }}
         </el-row>
       </div>
       <el-backtop></el-backtop>

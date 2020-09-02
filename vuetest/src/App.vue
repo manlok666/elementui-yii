@@ -22,7 +22,6 @@ export default {
 .home,/*设置占满*/
 html,
 body {
-  width: 100%;
   height: 100%;
   margin: 0;
 }
@@ -30,7 +29,6 @@ body {
 .view,/*设置占满*/
 html,
 body {
-  width: 100%;
   min-height: 100%;
   margin: 0;
 }
