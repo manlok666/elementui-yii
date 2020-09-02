@@ -18,4 +18,6 @@ vue+elementUI+yii2构建的前后端分离框架
 
 ## 说明
 
-- 配置一下数据库和nginx服务器就能用
+- 配置一下数据库和nginx服务器
+- composer安装插件依赖
+- 就能跑了
