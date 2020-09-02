@@ -15,3 +15,7 @@ vue+elementUI+yii2构建的前后端分离框架
 - 前端的localStorage保存token(登出会清除token)
 - 通用登录页、主页
 - 页面Header和Footer组件化
+
+## 说明
+
+- 配置一下数据库和nginx服务器就能用
