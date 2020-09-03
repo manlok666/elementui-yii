@@ -18,7 +18,7 @@
       </el-form-item>
 
       <el-row type="flex">
-        <el-button type="primary" class="button">确定</el-button>
+        <el-button type="primary" class="button"  @click="handleSubmit('formInline')">确定</el-button>
       </el-row>
 
     </el-form>
@@ -37,7 +37,7 @@ export default {
       formInline: {
         old_password: '',
         new_password: '',
-        again_password:'',
+        again_password:''
       },
       ruleInline: {
         old_password: [
@@ -52,6 +52,32 @@ export default {
       }
     }
   },
+  methods: {
+    handleSubmit(name) {
+      var obj =  {
+        old_password: this.formInline.old_password,
+        new_password: this.formInline.new_password,
+        again_password: this.formInline.again_password
+      };
+
+      if(this.formInline.old_password.length === 0 || this.formInline.new_password.length === 0 || this.formInline.again_password.length === 0){
+        this.$message.error('新旧密码不能为空');
+        return;
+      }
+      this.$http.post('/user/change-password',this.$qs.stringify(obj))
+        .then((res) => {
+          console.log(res);
+          if(res.data.success){
+            this.$message.success('修改密码成功！');
+            this.$router.push({path:'/'})
+          }else{
+            this.$message.error(res.data.msg);
+          }
+        }, (err) => {
+          this.$message.error('请求错误！')
+        })
+    }
+  }
 }
 </script>
 

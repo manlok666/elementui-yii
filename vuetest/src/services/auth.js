@@ -6,8 +6,8 @@ export default {
     },
     // authentication status
     authenticated(){
-        var t = localStorage.getItem(setting.userToken);
-        return t && t.length > 0;
+      const t = localStorage.getItem(setting.userToken);
+      return t && t.length > 0;
     },
     getToken(){
         return localStorage.getItem(setting.userToken);

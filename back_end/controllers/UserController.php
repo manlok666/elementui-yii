@@ -2,6 +2,9 @@
 namespace app\controllers;
 
 use app\services\UserService;
+use sizeg\jwt\JwtHttpBearerAuth;
+use Yii;
+use yii\db\Exception;
 use yii\web\Response;
 /**
  * UserController 用户控制器
@@ -12,6 +15,26 @@ use yii\web\Response;
 class UserController extends BaseAPIController
 {
     /**
+     * 权限验证
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        if (Yii::$app->getRequest()->getMethod() == 'OPTIONS') {
+            exit;
+        }
+            $behaviors['authenticator'] = [
+                'class' => JwtHttpBearerAuth::class,
+                'optional' => [
+                    'login',
+                ],
+            ];
+
+        return $behaviors;
+    }
+
+    /**
      * 用户登录
      * @return array 登录结果
      */
@@ -19,10 +42,25 @@ class UserController extends BaseAPIController
     {
         \Yii::$app->response->format = Response::FORMAT_JSON;
         $data = \Yii::$app->request->post();
-        if((new UserService())->userLogin($data))
-        {
-            return ['success'=>1,'msg'=>'100-token'];
-        }
-        return ['success'=>0,'msg'=>'登录失败'];
+        $username = $data['name'];
+        $password = $data['password'];
+        return (new UserService())->userLogin($username,$password);
+    }
+
+    /**
+     * 用户修改密码
+     * @return array|int|string
+     * @throws Exception
+     * @throws \Throwable
+     */
+    public function actionChangePassword()
+    {
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $data = \Yii::$app->request->post();
+        $old_password = $data['old_password'];
+        $new_password = $data['new_password'];
+        $again_password = $data['again_password'];
+        $id = $this->findIdByToken();
+        return (new UserService())->updatePass($old_password,$new_password,$again_password,$id);
     }
 }

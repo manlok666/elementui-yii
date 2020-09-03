@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
+use sizeg\jwt\JwtHttpBearerAuth;
 use Yii;
-use yii\filters\auth\HttpBearerAuth;
 /**
  * ItemController 主页控制器
  *
@@ -21,7 +21,7 @@ class ItemController extends BaseAPIController
         $behaviors = parent::behaviors();
         if (Yii::$app->getRequest()->getMethod() !== 'OPTIONS') {
             $behaviors['authenticator'] = [
-                'class' => HttpBearerAuth::className(),
+                'class' => JwtHttpBearerAuth::class,
             ];
         }
         return $behaviors;
@@ -35,4 +35,6 @@ class ItemController extends BaseAPIController
     {
         return ['success'=>1,'msg'=>'你看到这个网页证明你已经登录成功了！'];
     }
+
+
 }
