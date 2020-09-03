@@ -44,3 +44,4 @@ composer install
 ## 说明
 
 - 配置一下数据库和nginx服务器就能跑了。
+- token校验基于JWT
