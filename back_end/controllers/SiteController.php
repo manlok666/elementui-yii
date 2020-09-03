@@ -9,7 +9,12 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
+/**
+ * SiteController 初始化控制器
+ *
+ * @author manlok <17wlqiu@gmail.com>
+ * @since 0.1
+ */
 class SiteController extends Controller
 {
     /**

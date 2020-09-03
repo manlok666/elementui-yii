@@ -4,9 +4,17 @@ namespace app\controllers;
 
 use yii\rest\Controller;
 use yii\filters\Cors;
-
+/**
+ * BaseAPIController 基层控制器
+ *
+ * @author manlok <17wlqiu@gmail.com>
+ * @since 0.1
+ */
 class BaseAPIController extends Controller
 {
+    /**
+     * 跨域设置
+     */
    public function init()
 {
     return [
