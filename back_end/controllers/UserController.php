@@ -63,4 +63,17 @@ class UserController extends BaseAPIController
         $id = $this->findIdByToken();
         return (new UserService())->updatePass($old_password,$new_password,$again_password,$id);
     }
+
+    /**
+     * 返回用户信息
+     * @return array|int|string
+     * @throws Exception
+     * @throws \Throwable
+     */
+    public function actionGetInfo()
+    {
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $id = $this->findIdByToken();
+        return (new UserService())->getUserInfo($id);
+    }
 }

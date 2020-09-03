@@ -3,7 +3,7 @@
     <Header></Header>
     <el-row  class="page_center row-bg text-center"  >
       <h2>个人信息</h2>
-      <p>admin - 超级管理员</p>
+      <p>{{msg.username}} - 超级管理员</p>
       <p>注册时间：2020/9/2 09:24:54</p>
       <el-divider></el-divider>
       <p>手机号: 123456789</p>
@@ -21,8 +21,15 @@ export default {
   data () {
     return {
       value1: true,
-
+      msg:''
     }
+  },
+  created(){
+
+    this.$http.get('/user/get-info').then((res)=>{
+      this.msg = res.data;
+    })
+
   },
 }
 </script>

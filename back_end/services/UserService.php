@@ -75,4 +75,14 @@ class UserService
         }
         return ['success'=>1,'msg'=>'修改成功！'];
     }
+
+    /**
+     * 返回用户信息方法
+     * @param $id 用户ID
+     * @return array 信息
+     */
+    public function getUserInfo($id)
+    {
+       return UserModel::find()->where(['id'=> $id])->asArray()->one();
+    }
 }
